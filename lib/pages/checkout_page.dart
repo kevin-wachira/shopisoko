@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopisoko/pages/order_history.dart';
 //import 'package:nikeshi2/pages/CheckoutPage2.dart';
 import 'package:shopisoko/widgets/cart_component.dart';
 import 'package:provider/provider.dart';
@@ -152,28 +153,7 @@ class CheckoutPageState extends State<CheckoutPage> {
                          /*createCartListItem(Provider.of<Cart>(context,listen: false).cart_items_data.elementAt(index),index);*/
                        },
                      ),
-                    /*child: FutureBuilder(
-                        future: future_cart,
-                        builder: (context,snapshot){
 
-                          if( snapshot.hasData) {
-
-                            return Container();
-
-
-
-                          }
-
-                          else if(snapshot.connectionState==ConnectionState.waiting){
-                            return Container();
-                          }
-                          else {
-                            return Container();
-                          }
-                        }
-                    )*/
-                  /*
-                   ),*/
                 ),
                 Container(
                   color: Colors.black12,
@@ -210,55 +190,8 @@ class CheckoutPageState extends State<CheckoutPage> {
                           ),
                         ),
 
-             /*           Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 0.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text('Discount',style: TextStyle(color: Colors.black54,
-                                    fontWeight: FontWeight.w400,fontSize: 14,fontFamily: 'Open Sans'),),
-                              ),
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text("10%",style: TextStyle(color: Colors.black54,
-                                    fontWeight: FontWeight.w400,fontSize: 14,fontFamily: 'Open Sans'),),
-                              )
-                            ],
-                          ),
-                        ),*/
-/*
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 0.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text('Packing/delivery fee',style: TextStyle(color: Colors.black54,
-                                    fontWeight: FontWeight.w400,fontSize: 14,fontFamily: 'Open Sans'),),
-                              ),
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text('Ksh 2000',style: TextStyle(color: Colors.black54,
-                                    fontWeight: FontWeight.w400,fontSize: 14,fontFamily: 'Open Sans'),),
-                              )
-                            ],
-                          ),
-                        ),*/
-    /*                    Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 0.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text('Total',style: TextStyle(color: Colors.black87,
-                                    fontWeight: FontWeight.w600,fontSize: 14,fontFamily: 'Open Sans'),),
-                              ),
-                              Padding(padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 0.0),
-                                child: Text('Ksh 4000',style: TextStyle(color: Colors.black87,
-                                    fontWeight: FontWeight.w600,fontSize: 14,fontFamily: 'Open Sans'),),
-                              )
-                            ],
-                          ),
-                        )*/
+
+
                       ],
                     ),
                   ),
@@ -274,7 +207,11 @@ class CheckoutPageState extends State<CheckoutPage> {
 
                       onPressed: (){
                          Navigator.push(context,MaterialPageRoute(builder: (context)=>UserContainer()));
-
+                         setState(() {
+                           return resetItems();
+                           /*Provider.of<Cart>(context,listen:false).removeItem(current_index);
+                                        Provider.of<Cart>(context,listen: false).cart_size--;*/
+                         });
                       },
                       child: Text('PLACE   ORDER',style: TextStyle(
                           color: Colors.white,fontFamily: 'Open Sans',
@@ -285,7 +222,8 @@ class CheckoutPageState extends State<CheckoutPage> {
 
                     ),
                   ),
-                )
+                ),
+
 
               ],
 
@@ -315,7 +253,10 @@ class CheckoutPageState extends State<CheckoutPage> {
     //  cart.cart_items_data.add(cartItemsData);
 
   }
+  resetItems(){
 
+    //  Provider.of<Orders>(context)
+  }
 
 }
 

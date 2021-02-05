@@ -25,6 +25,7 @@ class ProductCatalogueState extends State<ProductCatalogue>{
   String product_header;
   String product_detail;
   String category_search;
+  bool _isButtonDisabled;
   Future<List<Brand>> future_brands;
   Future<List<Product>> future_product;
   ProductRepository product_repository=new ProductRepository();
@@ -35,6 +36,7 @@ class ProductCatalogueState extends State<ProductCatalogue>{
    @override
    void initState() {
      this.future_product=this.getProducts();
+     _isButtonDisabled = false;
     super.initState();
   }
   @override
@@ -163,7 +165,7 @@ class ProductCatalogueState extends State<ProductCatalogue>{
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    int.parse(user_products.elementAt(index).qty) > 0 ?
+                                                    int.parse(user_products.elementAt(index).qty) > 0  ?
                                                     Padding(
                                                       padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 0.0),
                                                       child: OfferContainer(),
@@ -198,23 +200,32 @@ class ProductCatalogueState extends State<ProductCatalogue>{
 
                                                     Padding(
                                                         padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 0.0),
-                                                        child: Container(
-                                                          width: 150,
-                                                          height: 30,
-                                                          child: FlatButton.icon(
-                                                            onPressed: (){
-                                                              setState(() {
-                                                                addToCart(user_products.elementAt(index));
-                                                              });
-                                                            },
-                                                            icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
-                                                            label: Text('ADD TO CART',style: TextStyle(
-                                                                color: Colors.white,fontFamily: 'Open Sans',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: 10
-                                                            ),),
-                                                            color: Color.fromRGBO(0,0,139,1),
-                                                          ),
+                                                        child: Row(
+                                                          children: [
+                                                            int.parse(user_products.elementAt(index).qty) > 0 ?
+
+                                                            Container(
+                                                              width: 150,
+                                                              height: 30,
+                                                              child: FlatButton.icon(
+
+                                                                onPressed: (){
+
+                                                                  setState(() {
+                                                                    addToCart(user_products.elementAt(index));
+                                                                  });
+                                                                },
+                                                                icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
+                                                                label: Text('ADD TO CART',style: TextStyle(
+                                                                    color: Colors.white,fontFamily: 'Open Sans',
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 10
+                                                                ),),
+                                                                color: Color.fromRGBO(0,0,139,1),
+                                                              ),
+                                                            )
+                                                           : SizedBox()
+                                                          ],
                                                         )
                                                     ),
 
@@ -258,7 +269,17 @@ class ProductCatalogueState extends State<ProductCatalogue>{
         }
 
         else{
-          return Container();
+
+          return Center(
+              child: Container(
+                width: 100,
+                height: 100,
+                child: CircularProgressIndicator(
+                  valueColor:new AlwaysStoppedAnimation<Color>(Color.fromRGBO(0, 0, 139, 1)),
+                  strokeWidth:5,
+                ),
+              )
+          );
         }
       },
     );

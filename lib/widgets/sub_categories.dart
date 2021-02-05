@@ -215,7 +215,16 @@ class _SubcategoriesState extends State<Subcategories> {
               }
 
               else{
-                return Container();
+                return Center(
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      child: CircularProgressIndicator(
+                        valueColor:new AlwaysStoppedAnimation<Color>(Color.fromRGBO(0, 0, 139, 1)),
+                        strokeWidth:5,
+                      ),
+                    )
+                );
               }
             },
           )

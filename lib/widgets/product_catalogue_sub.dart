@@ -138,6 +138,7 @@ class ProductCatalogueSubState extends State<ProductCatalogueSub>{
                                                             image: NetworkImage(user_products.elementAt(index).image))),
                                                   ),
 
+
                                                   Align(
                                                     alignment: Alignment.topRight,
                                                     child: Padding(
@@ -145,12 +146,16 @@ class ProductCatalogueSubState extends State<ProductCatalogueSub>{
                                                       child: Row(
                                                         //  mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
+                                                          int.parse(user_products.elementAt(index).qty) > 0 ?
+
                                                           SaleChevron(
-                                                          )
+                                                          ) :
+                                                          SizedBox()
                                                         ],
                                                       ),
                                                     ),
                                                   )
+
                                                 ],
                                               )
                                           ),
@@ -201,23 +206,34 @@ class ProductCatalogueSubState extends State<ProductCatalogueSub>{
 
                                                     Padding(
                                                         padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 0.0),
-                                                        child: Container(
-                                                          width: 150,
-                                                          height: 30,
-                                                          child: FlatButton.icon(
-                                                            onPressed: (){
-                                                              setState(() {
-                                                                addToCart(user_products.elementAt(index));
-                                                              });
-                                                            },
-                                                            icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
-                                                            label: Text('ADD TO CART',style: TextStyle(
-                                                                color: Colors.white,fontFamily: 'Open Sans',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: 10
-                                                            ),),
-                                                            color: Color.fromRGBO(0,0,139,1),
-                                                          ),
+                                                        child: Row(
+                                                          children: [
+                                                            int.parse(user_products.elementAt(index).qty) > 0 ?
+
+                                                            Container(
+
+                                                              width: 150,
+                                                              height: 30,
+                                                              child: FlatButton.icon(
+
+                                                                onPressed: (){
+
+                                                                  setState(() {
+
+                                                                    addToCart(user_products.elementAt(index));
+                                                                  });
+                                                                },
+                                                                icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
+                                                                label: Text('ADD TO CART',style: TextStyle(
+                                                                    color: Colors.white,fontFamily: 'Open Sans',
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 10
+                                                                ),),
+                                                                color: Color.fromRGBO(0,0,139,1),
+                                                              ),
+                                                            )
+                                                                : SizedBox()
+                                                          ],
                                                         )
                                                     ),
 
@@ -237,7 +253,9 @@ class ProductCatalogueSubState extends State<ProductCatalogueSub>{
                             }
 
                             else{
-                              return Container();
+                              return Container(
+                                child: CircularProgressIndicator(),
+                              );
                             }
                           },
                         )
@@ -261,7 +279,16 @@ class ProductCatalogueSubState extends State<ProductCatalogueSub>{
         }
 
         else{
-          return Container();
+          return Center(
+              child: Container(
+                width: 100,
+                height: 100,
+                child: CircularProgressIndicator(
+                  valueColor:new AlwaysStoppedAnimation<Color>(Color.fromRGBO(0, 0, 139, 1)),
+                  strokeWidth:5,
+                ),
+              )
+          );
         }
       },
     );

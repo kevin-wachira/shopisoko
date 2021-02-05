@@ -482,7 +482,7 @@ class UserContainerState extends State<UserContainer> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 20.0),
             child: Text(
-              "You have sent Ksh " + amount + " to \n Fashion World for "
+              "You have sent Ksh " + amount + " to \n Shopisoko "
                   "order no " + user_order_no + "on " + user_date,
               style: TextStyle(color: Colors.white,fontFamily: 'Open Sans',),
             ),
@@ -492,7 +492,7 @@ class UserContainerState extends State<UserContainer> {
             alignment: Alignment.center,
             child: RaisedButton(onPressed: (){
 
-            }, child: Text('OK',style: TextStyle(color: Color.fromRGBO(214,24,195,1)),),
+            }, child: Text('OK',style: TextStyle( color: Colors.deepPurple,),),
               color: Colors.white,),
           )
         ],
@@ -1090,8 +1090,7 @@ class UserContainerState extends State<UserContainer> {
                                       return Container(
                                         child: Center(
                                           child: CircularProgressIndicator(
-                                            valueColor: new AlwaysStoppedAnimation<Color>(
-                                                Color.fromRGBO(214, 24, 195, 1)),
+                                            valueColor: new AlwaysStoppedAnimation<Color>( Colors.deepPurple,),
                                             strokeWidth: 5,),
                                         ),
                                       );
@@ -1234,6 +1233,7 @@ class UserContainerState extends State<UserContainer> {
   }
 
 
+
   double CalculatePrice(double distance){
     if(distance < 10.0){
       final_amount=100;
@@ -1288,7 +1288,9 @@ class UserContainerState extends State<UserContainer> {
       child: Center(
         child: Text("Waiting for Mpesa confirmation....",
           style: TextStyle(color: Colors.green.shade400,fontWeight: FontWeight.w500),),
+
       ),
+
     );
   }
   Future<void> listenForMpesaMessage(BuildContext context) async{

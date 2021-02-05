@@ -120,7 +120,6 @@ class ProductDetailState extends State<ProductDetail>{
                                  // fit: BoxFit.cover,
                                 fit:BoxFit.contain,
                                   image:NetworkImage(product.image)
-                             //     image: NetworkImage("https://media.npr.org/assets/news/2010/04/26/groceries_wide-0cf2b0fc41c9b82c329067ffe04d787041c17251.jpg?s=1400")
                               ),
                             ),
                           ),

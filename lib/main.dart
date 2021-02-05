@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopisoko/services/category_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:shopisoko/pages/home_page_carousel.dart';
+import 'package:shopisoko/services/order_repository.dart';
 import 'app_utils/app_utils.dart';
 import 'package:shopisoko/models/models.dart';
 import 'package:shopisoko/services/brands_repository.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_)=>Search(search: '')),
     ],
     child: MaterialApp(
+
         title: 'Shopi Soko',
         theme: ThemeData(
           primaryColor: Colors.blue,
@@ -62,13 +64,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var button_status,button_status1;
+
   Future<List<Brand>> future_brands;
   Future<List<Categories>> future_categories;
   List<Categories> initial_categories=[];
   BrandsRepository brandsRepository=new BrandsRepository();
+  OrderRepository orderRepository=new OrderRepository();
   CategoriesRepository categoriesRepository=new CategoriesRepository();
   SharedPreferences pref;
   Future<SharedPreferences> _prefs=SharedPreferences.getInstance();
+  List<Orders> list_orders;
   @override
   void initState() {
 
