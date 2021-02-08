@@ -200,33 +200,29 @@ class ProductCatalogueState extends State<ProductCatalogue>{
 
                                                     Padding(
                                                         padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 0.0),
-                                                        child: Row(
-                                                          children: [
-                                                            int.parse(user_products.elementAt(index).qty) > 0 ?
+                                                        child:  int.parse(user_products.elementAt(index).qty) > 0 ?
 
-                                                            Container(
-                                                              width: 150,
-                                                              height: 30,
-                                                              child: FlatButton.icon(
+                                                        Container(
+                                                          width: 130,
+                                                          height: 30,
+                                                          child: FlatButton.icon(
 
-                                                                onPressed: (){
+                                                            onPressed: (){
 
-                                                                  setState(() {
-                                                                    addToCart(user_products.elementAt(index));
-                                                                  });
-                                                                },
-                                                                icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
-                                                                label: Text('ADD TO CART',style: TextStyle(
-                                                                    color: Colors.white,fontFamily: 'Open Sans',
-                                                                    fontWeight: FontWeight.w600,
-                                                                    fontSize: 10
-                                                                ),),
-                                                                color: Color.fromRGBO(0,0,139,1),
-                                                              ),
-                                                            )
-                                                           : SizedBox()
-                                                          ],
+                                                              setState(() {
+                                                                addToCart(user_products.elementAt(index));
+                                                              });
+                                                            },
+                                                            icon: Icon(Icons.shopping_cart,color: Colors.white,size: 10,),
+                                                            label: Text('ADD TO CART',style: TextStyle(
+                                                                color: Colors.white,fontFamily: 'Open Sans',
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 10
+                                                            ),),
+                                                            color: Color.fromRGBO(0,0,139,1),
+                                                          ),
                                                         )
+                                                            : SizedBox()
                                                     ),
 
                                                   ],
